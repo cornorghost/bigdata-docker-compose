@@ -256,7 +256,13 @@ services:
       - ./elk/filebeat/logs:/usr/share/filebeat/logs
     environment:
       - TZ=Asia/Shanghai
-      
+
+  kafka-ui-lite:
+    image: freakchicken/kafka-ui-lite
+    container_name: kafka-ui-lite
+    ports:
+      - "8889:8889"
+
 volumes:
   alluxio-worker-data:
   alluxio-ufs:
