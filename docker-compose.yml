@@ -86,7 +86,7 @@ services:
     depends_on:
       - zookeeper
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 10.116.200.24
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.154.130
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "arkuser:1:1, arkevent:1:1"
       KAFKA_TRANSACTION_MAX_TIMEOUT_MS: "7200000"

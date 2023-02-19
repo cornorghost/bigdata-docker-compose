@@ -44,7 +44,7 @@ Install docker-compose:
 
 * HDFS: http://namenode:9870/
 * YARN: http://resourcemanager:8088/
-* ES£ºhttp://elasticsearch:9200/
+* ESï¿½ï¿½http://elasticsearch:9200/
 * Kibana:http://kibana:5601/
 * Presto: http://prestodb:9999/
 * Hbase: http://hbase-master:16010/
@@ -185,6 +185,26 @@ Altnatively, you can test the intergation with flink.  Just  follow the step:
 
 For java developers, I provide some tests over the platform. You can fork it from [here](https://github.com/spancer/flink-iceberg-demo), the test project
 contains flink jobs with set of components, such as kafka, elasticsearch, iceberg, etc.. Source and sink examples are fully inclued.
+
+## Tips
+you need to replace your host when set kafka config, for exaple:
+"KAFKA_ADVERTISED_HOST_NAME: 192.168.154.130 is mine"
+```
+  kafka:
+    image: wurstmeister/kafka:2.12-2.5.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.154.130
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "arkuser:1:1, arkevent:1:1"
+      KAFKA_TRANSACTION_MAX_TIMEOUT_MS: "7200000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock   
+``` 
 
 ## ToDo
 1. ~~Integration flink 1.14~~
